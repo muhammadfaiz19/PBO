@@ -1,1 +1,1 @@
-
+tugas tertulis tentang python
