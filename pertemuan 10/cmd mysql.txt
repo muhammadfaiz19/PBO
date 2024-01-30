@@ -1,0 +1,155 @@
+Microsoft Windows [Version 10.0.22621.2861]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Windows\System32>cd C:\xampp\mysql\bin
+
+C:\xampp\mysql\bin>mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 107
+Server version: 10.4.28-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use kampus;
+Database changed
+MariaDB [kampus]> create table mahasiswa(
+    -> id int primary key auto_increment,
+    -> nim varchar(10) unique not null,
+    -> nama varchar(100) not null,
+    -> jk char(1) not null,
+    -> prodi varchar(10);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6
+MariaDB [kampus]> create table mahasiswa(
+    -> id int primary key auto_increment,
+    -> nim varchar(10) unique not null,
+    -> nama varchar(100) not null,
+    -> jk char(1) not null,
+    -> prodi varchar(10)) not null;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'not null' at line 6
+MariaDB [kampus]> create table mahasiswa(
+    -> id int primary key auto_increment,
+    -> nim varchar(10) unique not null,
+    -> nama varchar(100) not null,
+    -> jk char(1) not null,
+    -> prodi varchar(10) not null;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6
+MariaDB [kampus]> show tables
+    ->
+    -> ;
++------------------+
+| Tables_in_kampus |
++------------------+
+| matakuliah       |
++------------------+
+1 row in set (0.002 sec)
+
+MariaDB [kampus]> create table mahasiswa(
+    -> id int primary key auto_increment,
+    -> nim varchar(10) unique not null,
+    -> nama varchar(100) not null,
+    -> jk char(1) not null,
+    -> prodi varchar(10) not null;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6
+MariaDB [kampus]> create table mahasiswa(
+    -> id int primary key auto_increment,
+    -> nim varchar(10) unique not null,
+    -> nama varchar(100) not null,
+    -> jk char(1) not null,
+    -> prodi varchar(10) not null);
+Query OK, 0 rows affected (0.109 sec)
+
+MariaDB [kampus]> show tables;
++------------------+
+| Tables_in_kampus |
++------------------+
+| mahasiswa        |
+| matakuliah       |
++------------------+
+2 rows in set (0.002 sec)
+
+MariaDB [kampus]> describe mahasiswa;
++-------+--------------+------+-----+---------+----------------+
+| Field | Type         | Null | Key | Default | Extra          |
++-------+--------------+------+-----+---------+----------------+
+| id    | int(11)      | NO   | PRI | NULL    | auto_increment |
+| nim   | varchar(10)  | NO   | UNI | NULL    |                |
+| nama  | varchar(100) | NO   |     | NULL    |                |
+| jk    | char(1)      | NO   |     | NULL    |                |
+| prodi | varchar(10)  | NO   |     | NULL    |                |
++-------+--------------+------+-----+---------+----------------+
+5 rows in set (0.048 sec)
+
+MariaDB [kampus]> insert into mahasiswa (nim,nama,jk,prodi)values('220511139','Muhammad Faiz','L','TIF');
+Query OK, 1 row affected (0.009 sec)
+
+MariaDB [kampus]> describe mahasiswa;
++-------+--------------+------+-----+---------+----------------+
+| Field | Type         | Null | Key | Default | Extra          |
++-------+--------------+------+-----+---------+----------------+
+| id    | int(11)      | NO   | PRI | NULL    | auto_increment |
+| nim   | varchar(10)  | NO   | UNI | NULL    |                |
+| nama  | varchar(100) | NO   |     | NULL    |                |
+| jk    | char(1)      | NO   |     | NULL    |                |
+| prodi | varchar(10)  | NO   |     | NULL    |                |
++-------+--------------+------+-----+---------+----------------+
+5 rows in set (0.082 sec)
+
+MariaDB [kampus]> select * mahasiswa;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'mahasiswa' at line 1
+MariaDB [kampus]> select * from mahasiswa;
++----+-----------+---------------+----+-------+
+| id | nim       | nama          | jk | prodi |
++----+-----------+---------------+----+-------+
+|  1 | 220511139 | Muhammad Faiz | L  | TIF   |
++----+-----------+---------------+----+-------+
+1 row in set (0.002 sec)
+
+MariaDB [kampus]> insert into mahasiswa (nim,nama,jk,prodi)values('220511170','Nova Subhan','L','TIF');
+Query OK, 1 row affected (0.014 sec)
+
+MariaDB [kampus]> select * from mahasiswa;
++----+-----------+---------------+----+-------+
+| id | nim       | nama          | jk | prodi |
++----+-----------+---------------+----+-------+
+|  1 | 220511139 | Muhammad Faiz | L  | TIF   |
+|  2 | 220511170 | Nova Subhan   | L  | TIF   |
++----+-----------+---------------+----+-------+
+2 rows in set (0.001 sec)
+
+MariaDB [kampus]> insert into mahasiswa (nim,nama,jk,prodi)values('220511035','Muhammad Farhan Saino','L','TIF');
+Query OK, 1 row affected (0.013 sec)
+
+MariaDB [kampus]> select * from mahasiswa;
++----+-----------+-----------------------+----+-------+
+| id | nim       | nama                  | jk | prodi |
++----+-----------+-----------------------+----+-------+
+|  1 | 220511139 | Muhammad Faiz         | L  | TIF   |
+|  2 | 220511170 | Nova Subhan           | L  | TIF   |
+|  3 | 220511035 | Muhammad Farhan Saino | L  | TIF   |
++----+-----------+-----------------------+----+-------+
+3 rows in set (0.001 sec)
+
+MariaDB [kampus]> insert into mahasiswa (nim,nama,jk,prodi)values('220511112','Indira Putri Seruni','P','TIF');
+Query OK, 1 row affected (0.013 sec)
+
+MariaDB [kampus]> insert into mahasiswa (nim,nama,jk,prodi)values('220512312','Azizi Shafa Asadek','P','PET');
+Query OK, 1 row affected (0.012 sec)
+
+MariaDB [kampus]> insert into mahasiswa (nim,nama,jk,prodi)values('220514212','Aurellia','P','IND');
+Query OK, 1 row affected (0.013 sec)
+
+MariaDB [kampus]> select * from mahasiswa;
++----+-----------+-----------------------+----+-------+
+| id | nim       | nama                  | jk | prodi |
++----+-----------+-----------------------+----+-------+
+|  1 | 220511139 | Muhammad Faiz         | L  | TIF   |
+|  2 | 220511170 | Nova Subhan           | L  | TIF   |
+|  3 | 220511035 | Muhammad Farhan Saino | L  | TIF   |
+|  4 | 220511112 | Indira Putri Seruni   | P  | TIF   |
+|  5 | 220512312 | Azizi Shafa Asadek    | P  | PET   |
+|  6 | 220514212 | Aurellia              | P  | IND   |
++----+-----------+-----------------------+----+-------+
+6 rows in set (0.002 sec)
